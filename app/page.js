@@ -995,7 +995,11 @@ export default function Home() {
     if (t) setToken(t);
     else setLoading(false);
   }, []);
-
+useEffect(() => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  }
+}, []);
   useEffect(() => {
     if (!token) return;
 
